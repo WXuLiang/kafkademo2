@@ -1,0 +1,29 @@
+server:
+  port: 9080
+
+spring:
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: 192.168.0.111:9092
+          zk-nodes: 192.168.0.111:2181
+          minPartitionCount: 1
+          autoCreateTopics: true
+          autoAddPartitions: true
+      bindings:
+        testa:
+          destination: test_spring_stream
+          group: test
+          consumer:
+            concurrency: 1
+            partitioned: false
+        sourceA:
+          destination: test_spring_stream
+          producer:
+            partitionCount: 1
+            batchTimeout: 10000
+            bufferSize: 163840
+
+
+
